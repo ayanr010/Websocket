@@ -3,7 +3,7 @@ const http = require('http');
 const express = require('express');
 const app = express();
 
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT || 10000;
 const API_KEY = process.env.API_KEY; // Set this in your environment variables
 
 // Create an HTTP server
