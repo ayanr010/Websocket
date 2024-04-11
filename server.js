@@ -30,19 +30,20 @@ wss.on('connection', (ws) => {
         const max = Math.max(...dataReceived);
         ws.send(JSON.stringify({ data_received: dataReceived, max }));
         dataReceived = []; // Reset after sending response
-        //questions to ask:
-        // -- Do we need to reset the data after receiving -1?
-        //BONUS
-        // -- Scope for deleting a number? Should we return next max?
       } else {
-        console.log("Saving Data", data)
-        dataReceived.push(data);
+        if (Number.isInteger(data)) {
+          console.log("Saving Data", data)
+          dataReceived.push(data);
+        } else {
+          console.log("Skipping non-integer data:", data);
+        }
       }
     } catch (error) {
       ws.send(JSON.stringify({ error: 'Invalid message format' }));
+      console.error("Error:", error);
     }
   });
 });
 
-//To change with actual URL
-server.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
+
+server.listen(PORT, () => console.log(`Server is running on Port: ${PORT}`));
