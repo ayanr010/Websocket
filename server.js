@@ -26,6 +26,7 @@ wss.on('connection', (ws) => {
 
       // Handle data
       if (data === -1) {
+        console.log("Computing maximum and resetting")
         const max = Math.max(...dataReceived);
         ws.send(JSON.stringify({ data_received: dataReceived, max }));
         dataReceived = []; // Reset after sending response
@@ -34,6 +35,7 @@ wss.on('connection', (ws) => {
         //BONUS
         // -- Scope for deleting a number? Should we return next max?
       } else {
+        console.log("Saving Data", data)
         dataReceived.push(data);
       }
     } catch (error) {
