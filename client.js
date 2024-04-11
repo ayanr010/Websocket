@@ -1,7 +1,7 @@
+//script file to send messaged over websocket
 const WebSocket = require('ws');
 
-// Replace with your server's address
-const ws = new WebSocket('ws://localhost:5500');
+const ws = new WebSocket('https://wesbsocket.onrender.com');
 
 ws.on('open', function open() {
     console.log('Connected to the server.');
